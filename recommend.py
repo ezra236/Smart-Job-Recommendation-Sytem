@@ -15,6 +15,7 @@ data = data.drop("Unnamed: 0",axis=1)
 data.isnull().sum()
 
 text = " ".join(i for i in data["Key Skills"])
+
 stopwords = set(STOPWORDS)
 wordcloud = WordCloud(stopwords=stopwords, 
                       background_color="white").generate(text)
