@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Title Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Enter Job Details</h2>
+        <form action="/predict" method="post">
+            <label for="industry">Industry:</label>
+            <input type="text" name="industry" required><br><br>
+
+            <label for="role_category">Role Category:</label>
+            <input type="text" name="role_category" required><br><br>
+
+            <label for="functional_area">Functional Area:</label>
+            <input type="text" name="functional_area" required><br><br>
+
+            <label for="job_experience">Job Experience (years):</label>
+            <input type="number" name="job_experience" required><br><br>
+
+            <label for="job_salary">Expected Job Salary:</label>
+            <input type="text" name="job_salary" required><br><br>
+
+            <label for="skills">Skills (comma-separated):</label>
+            <input type="text" name="skills" required><br><br>
+
+            <button type="submit">Predict Job Title</button>
+        </form>
+    </div>
+
+    <div class="ford">
+        {% if prediction %}
+            <h3>Predicted Job Title: {{ prediction }}</h3>
+        {% endif %}
+    </div>    
+
+</body>
+</html>
