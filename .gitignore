@@ -1,0 +1,6 @@
+# Ignore large files
+backend/rf_model.pkl
+data/combined_dataset.csv
+*.pkl
+*.csv
+
