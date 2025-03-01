@@ -1,0 +1,240 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #0056b3;
+}
+
+.navbar {
+    position: fixed; /* Fixes the navbar at the top */
+    top: 0; /* Aligns it to the top */
+    left: 0; /* Ensures it starts from the left */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 1px solid black;
+    z-index: 10000; 
+    padding: 15px 20px;
+    height: 90px;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 25px;
+    color: rgb(9, 1, 33);
+    text-transform: uppercase;
+}
+
+.navbar .center-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;font-family: 'Times New Roman', Times, serif;
+}
+
+.navbar img {
+    width: 80px;
+    height: 60px;
+}
+
+.fill {
+    width: 100%;
+    height: auto;
+    margin-top: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    position: relative;
+}
+
+.job {
+  position: absolute;
+  top: 10%;
+  width: 70%;
+  height: auto;
+  background-color: transparent;
+  padding: 20px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  color: white;
+}
+
+.company-logo {
+    width: 60px;    /* Adjust as needed */
+    height: 60px;
+    border-radius: 60px;
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 35%;
+  }
+  
+  .job ul {
+    list-style: none;
+    padding: 0;
+  }
+  .job li {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+  }
+
+  .job-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four boxes per row */
+    gap: 20px;  /* Adjust spacing between boxes as needed */
+    margin-top: 20px;
+    color: black;
+    font-size: 17px;
+  }
+  
+  .job-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    /* Optional: add a shadow or hover effect */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+.apply-btn {
+  margin-top: 10px;
+  padding: 7px 20px;
+  font-size: 18px;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 29%;
+}
+
+.apply-btn:hover {
+  background-color: #0056b3;
+}
+
+
+.close-btn {
+  background-color: transparent;
+  color: #570000;
+  border: none;
+  padding: 5px 10px;
+  float: right;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.global-apply-form {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.global-apply-form.show {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.global-apply-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for labels */
+.global-apply-form label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Style for text, email, and file inputs */
+.global-apply-form input[type="text"],
+.global-apply-form input[type="email"],
+.global-apply-form input[type="file"] {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+/* Custom file upload container */
+.global-apply-form .custom-file-upload {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+/* Custom file upload label */
+.global-apply-form .custom-file-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* Style for the submit button */
+.global-apply-form input[type="submit"] {
+  padding: 10px;
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.global-apply-form input[type="submit"]:hover {
+  background-color: #1976D2;
+}
+
+  .custom-file-upload {
+    position: relative;
+    display: inline-block;
+    font-family: Arial, sans-serif;
+  }
+  
+  .custom-file-upload input[type="file"] {
+    display: none;
+  }
+  
+  .custom-file-label {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+  }
+  
+  .custom-file-label:hover {
+    background-color: #0056b3;
+  }
+  
+  #file-chosen {
+    margin-left: 10px;
+    font-size: 15px;
+    color: #0a0a0a;
+    vertical-align: middle;
+  }
+  

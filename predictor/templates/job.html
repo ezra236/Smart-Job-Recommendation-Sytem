@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find IT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/job.css' %}">
+    <link rel="icon" href="{% static 'images/lo.png' %}" type="image/png">
+</head>
+<body>
+
+<nav class="navbar">
+    <h1>FIND IT SERVICES</h1>
+    <p class="center-text">Find It Services empowers recruiters to hire exceptional talent</p>
+    <img src="{% static 'images/logo.png' %}">
+</nav>
+
+
+<div class="fill">
+    <div class="job">
+      {% for job in job_details %}
+        <div class="job-box">
+          <!-- Display company logo if available -->
+          {% if job.company.company_logo %}
+            <img src="{{ job.company.company_logo.url }}" alt="{{ job.company.company_name }}">
+          {% endif %}
+          <h3>{{ job.job_title }}</h3>
+          <p><strong>Company:</strong> {{ job.company.company_name }}</p>
+          <p><strong>Location:</strong> {{ job.company.company_location }}</p>
+          <p><strong>Skills:</strong> {{ job.skills }}</p>
+          <!-- Apply button with an onclick event that passes company details -->
+          <button class="apply-btn" onclick="openForm('{{ job.company.company_name }}', '{{ job.company.company_email }}')">Apply</button>
+        </div>
+      {% empty %}
+        <p>No jobs available.</p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Global Application Form -->
+  <div id="globalApplyForm" class="global-apply-form">
+    <button class="close-btn" onclick="closeForm()">×</button>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label>Company Name:
+        <input type="text" name="company_name" id="formCompanyName" readonly>
+      </label>
+      <label>Company Email:
+        <input type="email" name="company_email" id="formCompanyEmail" readonly>
+      </label>
+      <div class="custom-file-upload">
+        <label for="resume-upload" class="custom-file-label">Upload Resume</label>
+        <input type="file" name="resume" id="resume-upload">
+        <span id="file-chosen">No file chosen</span>
+      </div>
+      <input type="submit" value="Submit Application">
+    </form>
+  </div>
+
+
+
+  <script src="{% static 'js/job.js' %}"></script>
+  
+
+</body>
+</html>

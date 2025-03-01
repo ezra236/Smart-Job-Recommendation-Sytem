@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Company Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+  <link rel="Icon" href="{% static 'images/lo.png' %}">
+  <link rel="stylesheet" href="{% static 'css/company.css' %}">
+</head>
+<body>
+    
+<nav class="navbar">
+    <h1>FIND IT SERVICES</h1>
+    <p class="center-text">Find It Services empowers recruiters to hire exceptional talent</p>
+    <img src="{% static 'images/logo.png' %}">
+</nav>
+
+
+<div class="fill">
+    <h1>Welcome, {{ company_name }}!</h1>
+    <p>This is your company dashboard.</p>
+
+    <div class="job">
+        {% if job_list %}
+          <div class="job-container">
+            {% for job in job_list %}
+              <div class="job-box" id="job-box-{{ job.id }}">
+                <strong>{{ job.job_title }}</strong><br>
+                Skills: {{ job.skills }}<br>
+                <button class="remove-btn" onclick="removeJob('{{ job.id }}', this)">Remove</button>
+              </div>
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>No job details available.</p>
+        {% endif %}
+      </div>
+    
+  </div>
+
+
+  <script>
+    // Function to retrieve CSRF token from cookies
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+  
+    // Function to call the remove_job view via AJAX
+    function removeJob(jobId, button) {
+      const csrfToken = getCookie('csrftoken');
+      // Construct the URL for the job removal using the jobId
+      const url = "{% url 'remove_job' 0 %}".replace("0", jobId);
+  
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "X-CSRFToken": csrfToken,
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Remove the job box from the DOM
+          const jobBox = document.getElementById("job-box-" + jobId);
+          if (jobBox) {
+            jobBox.remove();
+          }
+        } else {
+          alert("Error removing job: " + data.error);
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("An error occurred while removing the job.");
+      });
+    }
+  </script>
+
+
+</body>
+</html>

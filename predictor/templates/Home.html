@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find IT</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/lo.png' %}" type="image/png">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="find.html" class="logo">FIND IT SERVICES</a>
+        <div>
+            <p class="sign" id="signIn"> SIGN UP</p>
+            <p class="sign1" id="signIn1"> SIGN IN</p>
+            <p class="sig" id="post" data-url="{% url 'post' %}">POST A JOB</p>
+
+            <p class="sig" id="postq"> POST A  TASK </p>
+        </div>
+        <a href="{% url 'job' %}" class="job-link">LOOK FOR JOB</a>
+    </nav>
+
+
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  
+
+    <div id="signInForm" class="sign-in-form">
+        <div class="container">
+            <div class="welcome-section">
+                <h1>Welcome!</h1>
+                <p>Discover personalized job opportunities tailored to your skills and interests, helping you take the next step in your career with ease</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+            <div class="signin-form">
+                <h2>Sign Up</h2>
+                
+                <form action="{% url 'register' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <label for="username">User Name</label>
+                        <input type="text" id="username" name="username" placeholder="TechTree" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="********" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="signInForm1" class="sign-in-form1">
+        <div class="container1">
+            <div class="welcome-section1">
+                <h1>Welcome!</h1>
+                <p>Sign In for a Company/Employer</p>
+                <a href="#" class="btn1">LOG-IN</a>
+            </div>
+            <div class="signin-form1">
+                <h2>Sign in</h2>
+                
+                <form method="POST" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="input-group1">
+                        <label for="username1">User Name</label>
+                        <input type="text" id="username1" name="username" placeholder="TechTree">
+                    </div>
+                    <!-- Email field (if not used for authentication, it can be removed or handled separately) -->
+                    <div class="input-group1">
+                        <label for="email1">Email</label>
+                        <input type="email" id="email1" placeholder="@example.com">
+                    </div>
+                    <div class="input-group1">
+                        <label for="password1">Password</label>
+                        <input type="password" id="password1" name="password" placeholder="********">
+                    </div>
+                    <button type="submit" class="submit-btn1">Submit</button>
+                </form>                                
+            
+            </div>
+
+            <div id="signInForm2" class="signin-form2">
+                <h2>Company Sign In</h2>
+                {% if error %}
+                  <p style="color:red;">{{ error }}</p>
+                {% endif %}
+                <form method="POST" action="{% url 'company_signin' %}">
+                    {% csrf_token %}
+                    <div class="input-group1">
+                      <label for="company_username">Company Name</label>
+                      <input type="text" id="company_username" name="company_username" placeholder="Alternate User">
+                    </div>
+                    <div class="input-group1">
+                      <label for="company_password">Password</label>
+                      <input type="password" id="company_password" name="company_password" placeholder="********">
+                    </div>
+                    <button type="submit" class="submit-btn1">Submit</button>
+                  </form>                  
+              </div>
+
+        </div>
+    </div>
+
+      
+
+    <div class="hero-section">
+        <h1>FIND IT SERVICES</h1>
+        <h2>WE MAKE DREAMS COME TRUE</h2>
+    </div>
+    
+
+    <section class="service-section">
+        <div class="content">
+            <h1>Our service</h1>
+            <p>
+                "Find It" services streamline job search, connecting employers and job seekers efficiently, 
+                providing diverse opportunities, and significantly impacting the job market by enhancing 
+                employment access.
+            </p>
+        </div>
+        <div class="image-container">
+            <img src="{% static 'images/2.jpeg' %}" alt="Handshake">
+        </div>
+    </section>
+
+
+<div class="s">
+    <section class="thank-you-section">
+        <div class="contents">
+            <h1>Thank you</h1>
+            <div class="contacts-info">
+                <p>
+                    <img src="{% static 'images/p.png' %}" alt="Phone Icon" class="icons">
+                    <strong>0799963300</strong>
+                </p>
+                <p>
+                    <img src="{% static 'images/m.png' %}" alt="Email Icon" class="icons">
+                    <strong>ezramuthomi46@gmail.com</strong>
+                </p>
+            </div>
+        </div>
+        <div class="image-containers">
+            <img src="{% static 'images/loo.png' %}" alt="Profile Image">
+        </div>
+    </section>
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>

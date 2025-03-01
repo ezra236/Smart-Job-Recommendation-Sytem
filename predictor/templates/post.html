@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find IT</title>
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="Icon" href="{% static 'images/lo.png' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <h1>FIND IT SERVICES</h1>
+    <p class="center-text">Find It Services empowers recruiters to hire exceptional talent</p>
+    <img src="{% static 'images/logo.png' %}">
+</nav>
+
+
+<form id="createCompanyForm" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="fill">
+    <div class="login-container">
+      <h1>Welcome!</h1>
+      <p>Create a company account</p>
+      <!-- Company Name -->
+      <div class="input-group">
+        <label for="username">Company Name</label>
+        <i class="icon fas fa-user"></i>
+        <input type="text" id="username" name="company_name" placeholder="Username" />
+      </div>
+      <!-- Company Location -->
+      <div class="input-group">
+        <label for="location">Company Location</label>
+        <i class="icon fas fa-map-marker-alt"></i>
+        <input type="text" id="location" name="company_location" placeholder="Nairobi" />
+      </div>
+      <!-- Company Email -->
+      <div class="input-group">
+        <label for="email">Company Email</label>
+        <i class="icon fas fa-envelope"></i>
+        <input type="email" id="email" name="company_email" placeholder="@example" />
+      </div>
+      <!-- Company Logo -->
+      <div class="file-upload">
+        <label class="file-upload-label" for="company-logo">
+          <i class="fas fa-upload"></i> Upload Company Logo
+        </label>
+        <input type="file" id="company-logo" name="company_logo" accept="image/*" />
+        <p id="file-name" class="file-name">No file chosen</p>
+      </div>
+      <!-- Password -->
+      <div class="input-group">
+        <label for="password">Password</label>
+        <i class="icon fas fa-lock"></i>
+        <input type="password" id="password" name="password" placeholder="********" />
+      </div>
+      <!-- Submit -->
+      <button class="login-btn">DONE</button>
+    </div>
+  </div>
+</form>
+
+
+<form id="jobForm" method="POST">
+  {% csrf_token %}
+  <div class="fillq">
+  
+<div class="d">
+    <div class="login-containerq">
+      <p>Fill in the Job Details</p>
+      <!-- Job Title -->
+      <div class="input-groupq">
+        <label for="username1">Job Title</label>
+        <i class="icon fas fa-user"></i>
+        <input type="text" id="username1" name="job_title" placeholder="Job Title" />
+      </div>
+      <!-- Company Email -->
+      <div class="input-groupq">
+        <label for="username1">Email</label>
+        <i class="icon fas fa-envelope"></i>
+        <input type="email" id="username1" name="company_email" placeholder="ez@gmail.com" />
+      </div>
+      <!-- Skills -->
+      <div class="input-groupq">
+        <label for="skills-group">Skills</label>
+        <i class="icon fas fa-code"></i>
+        <div id="skills-group" class="skills-group">
+          <input type="text" id="skill1" name="skill1" placeholder="Skill 1" />
+          <input type="text" id="skill2" name="skill2" placeholder="Skill 2" />
+          <input type="text" id="skill3" name="skill3" placeholder="Skill 3" />
+          <input type="text" id="skill4" name="skill4" placeholder="Skill 4" />
+          <input type="text" id="skill5" name="skill5" placeholder="Skill 5" />
+        </div>
+      </div>
+      <!-- Submit -->
+      <button class="login-btnq">POST</button>
+    </div>
+  </div>
+
+
+    <div class="sas">
+      <div class="container">
+
+          <!-- HERO SECTION -->
+          <section class="hero">
+            <div class="hero-text">
+              <h4>Career Catalyst: Tailored Job Matches</h4>
+              <h1>
+                Find IT <span class="icon">♣</span><br/>
+                Job Matching Made Simple
+              </h1>
+          </div>
+
+          </section>
+      </div>
+      
+      <div class="circular-element">
+      </div>
+
+  </div>
+
+  </div>
+</form>
+
+
+
+<div id="notification" class="notification">
+  Successfully Registered The Company
+</div>
+
+
+<div id="notification2" class="notification2">
+  Job successfully posted.
+</div>
+
+<script>
+document.getElementById("createCompanyForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // Create a FormData object from the form
+    var formData = new FormData(this);
+
+    // Send the AJAX request using fetch
+    fetch("{% url 'create_company' %}", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.success) {
+        // Show the notification and hide the form
+        var notification = document.getElementById("notification");
+        notification.classList.add("show");
+        document.querySelector(".fill").style.display = 'none';
+        document.querySelector('.fillq').style.marginTop = '80px';
+
+        // Remove the notification after 3 seconds (3000ms)
+        setTimeout(function() {
+          notification.classList.remove("show");
+        }, 3000);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+
+
+  document.getElementById("jobForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // Prevent the default form submission
+      
+      // Collect form data
+      var formData = new FormData(this);
+
+      // Send AJAX request
+      fetch("{% url 'post_job' %}", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "X-Requested-With": "XMLHttpRequest"
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.notification2) {
+          // Show the notification by adding the 'show' class
+          var notification = document.getElementById("notification2");
+          notification.classList.add("show");
+          // Optionally clear the form or perform other actions here
+        } else if (data.error) {
+          alert(data.error); // Or handle error display as you wish
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });
+    });
+    
+</script>
+
+<script src="{% static 'js/post.js' %}"></script>
+
+</body>
+</html>

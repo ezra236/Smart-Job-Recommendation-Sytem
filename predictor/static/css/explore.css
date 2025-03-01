@@ -1,0 +1,312 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    position: fixed; /* Fixes the navbar at the top */
+    top: 0; /* Aligns it to the top */
+    left: 0; /* Ensures it starts from the left */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 1px solid black;
+    z-index: 10000; 
+    padding: 15px 20px;
+    height: 90px;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 25px;
+    color: rgb(9, 1, 33);
+    text-transform: uppercase;
+}
+
+.navbar .center-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;font-family: 'Times New Roman', Times, serif;
+}
+
+.navbar img {
+    width: 80px;
+    height: 60px;
+}
+
+
+
+
+.fillq {
+    width: 100%;
+    height: 160vh;
+    background-image: url('../images/lp.png');
+    background-size: 100% 100%;
+    background-position: center;
+    margin-top: 70px;
+    color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.d {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-containerq {
+    /* Translucent panel */
+    background: transparent;
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    width: 600px;
+    height: 80%;
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .login-containerq p {
+    font-size: 1.2rem;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 30px;
+    color: white;
+  }
+
+  /* Input fields */
+  .input-groupq {
+    margin-bottom: 20px;
+    position: relative; /* For positioning the icons */
+  }
+  .input-groupq label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .input-groupq input {
+    width: 100%;
+    padding: 12px 40px 12px 40px; /* space for icon on left */
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+  }
+  .input-groupq input::placeholder {
+    color: #e0e0e0;
+  }
+
+  .skills-group input[type="text"] {
+    margin-bottom: 15px;
+  }
+
+  /* Icons inside input */
+  .input-groupq .icon {
+    position: absolute;
+    top: 36px; /* slightly below the label */
+    left: 10px;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  /* Login button */
+  .login-btnq {
+    width: 100%;
+    padding: 12px;
+    background-color: #2b5fd7;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.3s ease;
+  }
+  .login-btnq:hover {
+    background-color: #3b75ff;
+  }
+
+  .sas {
+    width: 50%;
+    height: 100%;
+    background-color: transparent;
+    position: relative;
+  }
+
+.container {
+    background-color: transparent;
+    padding: 20px;
+}
+
+.hero {
+    background-color: #BFF4FF; /* Light aqua background */
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    margin-top: 100px;
+  }
+
+  .hero-text {
+    flex: 1 1 450px;
+    max-width: 600px;
+    margin-right: 2rem;
+  }
+
+  .hero-text h4 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    color: #080808;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: #101010;
+  }
+
+  .hero-text .icon {
+    font-size: 1.2em;
+    color: #101010;
+  }
+
+  .hero-text .cta {
+    display: inline-block;
+    background-color: #101010;
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .hero-text .cta:hover {
+    background-color: #333;
+  }
+
+  /* Circular element behind the image */
+  .circular-element {
+    position: absolute;
+    top: 70%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    border: 2px solid #101010;
+    border-radius: 50%;
+    z-index: 1;
+    background-image: url('../images/loo.png');
+    background-size: 100% 100%;
+  }
+
+
+  .suggestions-list {
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensures it stays above other elements */
+}
+
+.suggestions-list li {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s ease-in-out;
+    color: black;
+}
+
+.suggestions-list li:hover {
+    background: #f4f4f4;
+}
+
+.suggestions-list li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+  
+
+.suggestions-list1 {
+  position: absolute;
+  background: white;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensures it stays above other elements */
+}
+
+.suggestions-list1 li {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s ease-in-out;
+  color: black;
+}
+
+.suggestions-list1 li:hover {
+  background: #f4f4f4;
+}
+
+.suggestions-list1 li:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
+
+
+.suggestions-list2 {
+  position: absolute;
+  background: white;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensures it stays above other elements */
+}
+
+.suggestions-list2 li {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s ease-in-out;
+  color: black;
+}
+
+.suggestions-list2 li:hover {
+  background: #f4f4f4;
+}
+
+.suggestions-list2 li:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
